@@ -1,0 +1,8 @@
+.news-container{
+    background-image: url('/src/Component/Images/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: lightcyan;
+    /* height: 100vh; */
+}
