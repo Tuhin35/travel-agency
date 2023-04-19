@@ -13,7 +13,10 @@ import Home from './Component/News/Home';
 import ErrorPage from './Component/Errorpage/Errorpage';
 import { Login } from './Component/Login/Login';
 import { Signup } from './Component/Login/Signup';
-import AllCart from './Component/Cart/AllCart';
+import AllCard from './Component/Card/AllCard';
+import CheckOut from './Component/News/CheckOut';
+import Orders from './Component/Orders/Orders';
+import PrivateRoutes from './Component/PrivateRoute/PrivateRoutes';
 
 
 function App() {
@@ -30,8 +33,8 @@ function App() {
           element:<Home></Home>
         },
         {
-          path:'/allCart',
-          element:<AllCart></AllCart>
+          path:'/Places',
+          element:<AllCard></AllCard>
         },
         {
           path:'/blog',
@@ -48,7 +51,18 @@ function App() {
         {
           path:'/signup',
           element:<Signup></Signup>
+        },
+        {
+          path:'/checkout/:id',
+          element:<PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>,
+          loader: ({params})=>fetch(`https://travel-agency-server-topaz.vercel.app/place/${params.id}`)
         }
+        ,{
+          path:'/orders',
+          element:<PrivateRoutes><Orders></Orders></PrivateRoutes>
+        }
+
+
       ]
     }
 
