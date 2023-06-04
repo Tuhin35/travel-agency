@@ -25,9 +25,9 @@ const Orders = () => {
         return res.json();
       })
       .then(data => setOrders(data))
+      //  console.log(orders)
 
-
-  }, [user?.email, logOut])
+  }, [user?.email, logOut,orders])
   // console.log(orders)
 
   const handleDelete = (id) => {
@@ -59,7 +59,7 @@ const Orders = () => {
     })
     .then(res=>res.json())
     .then(data =>{
-      console.log(data)
+      // console.log(data)
       if(data.modifiedCount > 0){
         const remaining = orders.filter(odr => odr._id !== id);
         const approving = orders.find(odr => odr._id === id);
@@ -85,7 +85,7 @@ const Orders = () => {
               <th>customer</th>
               <th>Details</th>
               <th>Price</th>
-              <th>Status</th>
+              <th>Payment</th>
 
 
             </tr>

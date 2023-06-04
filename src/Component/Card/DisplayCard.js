@@ -6,8 +6,8 @@ const DisplayCard = ({ place }) => {
 
     return (
         <div className="card grid-cols-2 w-96 bg-slate-500 shadow-xl">
-            <figure className="px-10 pt-10">
-                <img src={picture} alt="Shoes" className="rounded-xl" />
+            <figure className="px-2 pt-2">
+                <img src={picture} alt="Shoes" className="rounded-xl w-full" />
             </figure>
             <div className="card-body items-center text-center">
                 <h2 className="card-title">{title}</h2>

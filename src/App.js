@@ -4,11 +4,10 @@ import { createBrowserRouter, RouterProvider  } from 'react-router-dom';
 import './App.css';
 import Main from './Component/layout/Main';
 import Blog from './Component/News/Blog';
-import Contact from './Component/News/Contact';
 // import Destination from './Component/News/Destination';
 
 import Home from './Component/News/Home';
-
+import Payment from './Component/Orders/Payment'
 
 import ErrorPage from './Component/Errorpage/Errorpage';
 import { Login } from './Component/Login/Login';
@@ -40,10 +39,7 @@ function App() {
           path:'/blog',
           element:<Blog></Blog>
         },
-        {
-          path:'/contact',
-          element:<Contact></Contact>
-        },
+       
         {
           path:'/login',
           element:<Login></Login>
@@ -60,7 +56,12 @@ function App() {
         ,{
           path:'/orders',
           element:<PrivateRoutes><Orders></Orders></PrivateRoutes>
-        }
+        },
+        {
+          path: "/payment/:id",
+          element: <PrivateRoutes><Payment></Payment></PrivateRoutes>,
+          loader:({params}) => fetch(`https://travel-agency-server-tuhin35.vercel.app/orders/${params.id}`)
+      }
 
 
       ]

@@ -7,7 +7,7 @@ import { useState } from 'react';
 import './header.css'
 
 import { AuthContext } from '../Context/UserContext';
-import NightMode from './NightMode';
+
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);

@@ -54,14 +54,14 @@ const CheckOut = () => {
                 <h2> have a good journey</h2>
                 <h2 className='text-4xl'>{title}</h2>
                 <h4 className='text-3xl'> Price: {tags.Cost}</h4>
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 text-black text-xl'>
                     <input name='firstName' type="text" placeholder="first name" className="input input-ghost w-full input-border" />
                     <input name='lastName' type="text" placeholder="last name" className="input input-ghost w-full input-border" />
                     <input name='phone' type="text" placeholder="Your Phone" required className="input input-ghost w-full input-border" />
                     <input name='email' type="text" placeholder="Your email" defaultValue={user?.email} readOnly className="input input-ghost w-full input-border" />
 
                 </div>
-                <textarea name='message' className="textarea textarea-bordered h-24 w-full" id="" required placeholder='Your Comments' ></textarea>
+                <textarea name='message' className="textarea textarea-bordered text-xl text-black bg-white h-24 w-full" id="" required placeholder='Your Comments' ></textarea>
                 <input className='btn' type="submit" value="submit your Booking" />
             </form>
 
