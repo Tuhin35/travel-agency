@@ -4,17 +4,23 @@ import { AuthContext } from "../Context/UserContext";
 
 export const Signup= () => {
   const [error,setError] = useState(null);
-  const {createUser,logOut} = useContext(AuthContext)
+  const {createUser,updateUser} = useContext(AuthContext)
    const navigate = useNavigate();
- 
+  //  const [createUserEmail, setCreateUserEmail] = useState('')
+  // const [token] = (createUserEmail)
+
+  // if (token) {
+  //   navigate('/');
+  // }
  
    const handleSubmit =(event) =>{
        event.preventDefault();
        const form = event.target;
+       const name = form.firstName.value + " " + form.lastName.value;
        const email = form.email.value;
        const password = form.password.value;
        const confirm = form.confirm.value;
-       console.log(email,password,confirm)
+       console.log(name,email,password,confirm)
      
       //  if (password.length < 6) {
       //      setError("Password should be 6 characters or more");
@@ -30,19 +36,44 @@ export const Signup= () => {
        setError("");
       }
  
-      createUser(email,password)
-      .then(result =>{
-       const user = result.user;
-       console.log(user);
-       form.reset();
-       logOut();
- 
- navigate('/login')
+      
+    createUser(email, password)
+    .then(result => {
+      const user = result.user;
+      // console.log(user);
+      const userInfo = {
+        displayName: name
+      }
+
+      saveUser(name, email);
+
+    })
+
+    .catch(error => console.log(error))
+
+}
+
+   const saveUser = (name, email) => {
+
+    const user = { name, email };
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log("save user", data)
+       navigate('/')
+
       })
- 
-      .catch(error => console.log(error))
- 
-   }
+  }
+
+
+
+
     return (
       <div className="relative">
         <img

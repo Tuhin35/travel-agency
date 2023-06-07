@@ -6,7 +6,7 @@ const Blog = () => {
 
 
   useEffect(() => {
-    fetch('https://travel-agency-server-topaz.vercel.app/orders')
+    fetch('http://localhost:5000/orders')
       .then(res => res.json())
       .then(data => setReviews(data))
 

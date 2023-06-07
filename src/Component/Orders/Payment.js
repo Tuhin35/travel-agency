@@ -6,9 +6,10 @@ import CheckoutForm from './CheckoutForm';
 import Loading from '../Loader/Loading';
 
 const stripePromise = loadStripe('pk_test_51N3foiGn4oE3WVXCXuWUa81lLAsKL1UKB57oDZDZLPCMn1oe5HJOsQAsk6G9PFRytzqIZTRXMCHwbSBHS4fhvDTA00eurMaCKb')
-console.log(stripePromise)
+
 const Payment = () => {
     const order  = useLoaderData();
+    console.log(order)
      const navigation = useNavigation()
     // console.log('booking' , booking)
     const {_id,placeName,price,email,phone} = order;

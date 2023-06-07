@@ -7,31 +7,24 @@ import { useState } from 'react';
 import './header.css'
 
 import { AuthContext } from '../Context/UserContext';
+import useAdmin from '../../hooks/UseAdmin';
 
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
     const [theme, setTheme] = useState('light');
-    const toggleTheme = () => {
-        if (theme === 'light') {
-            setTheme('dark');
-        } else {
-            setTheme('light');
-        }
-    };
+    const [isAdmin] = useAdmin(user?.email)
+   
     useEffect(() => {
         document.body.className = theme;
     }, [theme]);
 
     return (
-        <div>
-            <div className="navbar   bg-sky-600">
+        <div className="navbar   bg-gray-900">
                 <div className="flex-1 ">
-                    <Link to='/' className="btn btn-ghost  normal-case text-xl">Travel with Tuhin</Link>
+                    <Link to='/' className="btn btn-primary text-white normal-case text-xl">Travel and chill</Link>
 
-                    <div className="w-20 rounded-full m-2">
-                        <img src={logo} />
-                    </div>
+                  
 
                    
 
@@ -40,9 +33,12 @@ const Header = () => {
                 <div className="flex-none gap-4 text-xl text-white ">
 
                     <Link to='/'> Home </Link>
-                    <Link to='Places'> All Place </Link>
-                    <Link to='orders'> Order </Link>
-                    <Link to='blog'> Blog </Link>
+                    <Link to='/Places'> All Place </Link>
+                    <Link to='/orders'> Order </Link>
+                  { isAdmin && <>
+                    <Link to='/dashboard'> Dashboard </Link>
+                    </>}
+                    <Link to='/blog'> Blog </Link>
 
 
                     {
@@ -61,10 +57,7 @@ const Header = () => {
 
                     }
 
-                    <div className={`App ${theme}`}>
-                        <button onClick={toggleTheme}> <FcNightPortrait></FcNightPortrait> </button>
-
-                    </div>
+            
 
                     {/*
                    <Link to='signup'> Sign up </Link>
@@ -72,9 +65,10 @@ const Header = () => {
                  <button>LogOut</button> */}
 
                 </div>
+                <label htmlFor='dashboard-drawer' tabIndex={2} className='btn btn-ghost lg:hidden'>
+                <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
+                </label>
             </div>
-
-        </div>
     );
 };
 

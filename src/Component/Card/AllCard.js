@@ -15,7 +15,7 @@ const AllCard = () => {
   const [places, setPlaces] = useState([]);
   const [count, setCount] = useState(0);
   useEffect(() => {
-    fetch(`https://travel-agency-server-topaz.vercel.app/places?page=${page}&size=${size}`)
+    fetch(`http://localhost:5000/places?page=${page}&size=${size}`)
       .then(res => res.json())
       .then(data => {
         setPlaces(data.places)
@@ -30,8 +30,8 @@ const AllCard = () => {
   const pages = Math.ceil(count / size)
 
   return (
-    <div>
-      <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 mt-5  mx-auto'>
+    <div className='mx-auto'>
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 my-5  mx-auto'>
         {
           places.map(place => <DisplayCard
             key={place._id}

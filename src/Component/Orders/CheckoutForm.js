@@ -21,6 +21,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const  CheckoutForm = ({order}) => {
+    console.log(order)
     const [cardError, setCardError] = useState();
     const [success, setSuccess] = useState('');
     const [processing, setProcessing] = useState(false);
@@ -29,11 +30,12 @@ const  CheckoutForm = ({order}) => {
     const elements = useElements();
    const [clientSecret, setClientSecret] = useState("");
    const navigate = useNavigate()
-   const {_id,placeName,price,email,phone} = order;
-
+   console.log(order)
+   const {_id,placeName,price,email,customer,phone} = order;
+ 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://travel-agency-server-tuhin35.vercel.app/create-payment-intent", {
+        fetch("http://localhost:5000/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -88,11 +90,13 @@ const  CheckoutForm = ({order}) => {
           
                  const payment={
                     price,
+                    customer,
                     transactionId: paymentIntent.id,
                     email,
-                    bookingId: _id
+                    bookingId: _id,
+                    phone
                  }
-                 fetch('https://travel-agency-server-tuhin35.vercel.app/payments',{
+                 fetch('http://localhost:5000/payments',{
                     method:'POST',
                     headers:{
                         'content-type': 'application/json',

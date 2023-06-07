@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Context/UserContext';
 import OrderRow from './OrderRow';
 
+
 const Orders = () => {
   const { user, logOut } = useContext(AuthContext);
   const [orders, setOrders] = useState([])
@@ -9,7 +10,7 @@ const Orders = () => {
 
   useEffect(() => {
 
-    fetch(`https://travel-agency-server-topaz.vercel.app/order?email=${user?.email}`, {
+    fetch(`http://localhost:5000/order?email=${user?.email}`, {
 
       headers: {
         authorization: `Bearer ${localStorage.getItem('travelToken')}`
@@ -33,7 +34,7 @@ const Orders = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are You Sure to cancel this order")
     if (proceed) {
-      fetch(`https://travel-agency-server-topaz.vercel.app/orders/${id}`, {
+      fetch(`http://localhost:5000/orders/${id}`, {
         method: 'DELETE'
       })
         .then(res => res.json())
@@ -49,7 +50,7 @@ const Orders = () => {
   }
 
   const handleStatusUpdate = id => {
-    fetch(`https://travel-agency-server-topaz.vercel.app/orders/${id}`,
+    fetch(`http://localhost:5000/orders/${id}`,
     {
       method:'PATCH',
       headers:{
@@ -102,6 +103,7 @@ const Orders = () => {
             </OrderRow>)
 
             }
+           
 
           </tbody>
           {/* foot */}

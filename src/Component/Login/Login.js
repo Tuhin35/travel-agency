@@ -33,7 +33,7 @@ export const Login = () => {
           email: user.email
         }
           // get jwt token
-        fetch('https://travel-agency-server-topaz.vercel.app/jwt', {
+        fetch('http://localhost:5000/jwt', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'
